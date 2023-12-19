@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class UniqueGradeCalculator {
+
+  public static void main(String[] args) {
+    
+    Scanner scanner = new Scanner(System.in);
+
+    System.out.print("Kindly enter the quantity of subjects: ");
+    int totalSubjects = scanner.nextInt();
+
+    int accumulatedMarks = 0;
+
+    for (int i = 1; i <= totalSubjects; i++) {
+      
+      int marks;
+      do {
+        System.out.print("Kindly enter marks acquired in subject " + i + ": ");
+        marks = scanner.nextInt();
+        if(!(marks >= 0 && marks <= 100)) {
+          System.out.println("Invalid marks entered. Try again.");
+        }  
+      } while(!(marks >= 0 && marks <= 100));
+      
+      accumulatedMarks += marks;
+    }
+
+    double meanPercentage = (double) accumulatedMarks / totalSubjects * 100;
+
+    char gradeLetter;
+
+    if (meanPercentage >= 95) {
+      gradeLetter = 'A';
+    } else if (meanPercentage >= 85) {
+     gradeLetter = 'B';
+    } else if (meanPercentage >= 75) {
+     gradeLetter = 'C';
+    } else if (meanPercentage >= 65) {
+     gradeLetter = 'D';
+    } else {
+     gradeLetter = 'F';
+    }
+
+    System.out.println("---------------------------------");
+    System.out.println("Total Marks Acquired: " + accumulatedMarks);
+    System.out.println("Mean Percentage: " + meanPercentage + "%");
+    System.out.println("Grade Letter: " + gradeLetter);
+    
+    scanner.close();
+  }
+
+}
